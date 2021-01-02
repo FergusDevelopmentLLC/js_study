@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <script>
+    
+    //Types and how they can be changed 
+    
+    // Primitive types:
+    // string
+    // number
+    // boolean
+    // undefined
+    // null
+    // symbol
+    // bigint
+
+    // everything else - Object type
+
+    // let person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+    // person = undefined;   // Now both value and type is undefined
+    // console.log('person', person) //=> undefined
+    // console.log('typeof(person)', typeof(person)) //=> undefined
+
+    // var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+    // console.log('person', person) //=> person {firstName: "John", lastName: "Doe", age: 50, eyeColor: "blue"}
+    // person = null;    // Now value is null, but type is still an object
+    // console.log('person', person) //=> person null
+    // console.log('typeof(person)', typeof(person)) //typeof(person) object
+
+    // JavaScript is loosely typed
+    // How do we get the type of a variable
+    
+    // let message = 'some string'
+    // console.log(typeof message) //string
+    // console.log(typeof window)  //object
+
+    //How is a data type is converted to another?
+    //1. Explicit type conversion
+
+    // console.log(String(42));
+    // let message = 'some string'
+    // console.log(Boolean(message));
+    
+    //2. Implicit type conversion (automatic, coercion)
+    //console.log('1' * '2') //the multiplication operator cooerces '1' to 1 and '2' to 2
+    //console.log('10' + 20); //1020 (20 is coerced into a string)
+
+    // In JavaScript there are only six falsey values:
+    // false
+    // 0 (zero)
+    // "" (empty string)
+    // null
+    // undefined
+    // NaN (Not A Number)
+
+    // let value = undefined
+    // console.log( value ? true : false)
+    // //=>false
+
+    // value = null
+    // console.log( value ? true : false)
+    // //=>false
+    
+    // value = true
+    // console.log( value ? true : false)
+    // //=>true
+
+    // value = false
+    // console.log( value ? true : false)
+    // //=>false
+
+    // value = 1
+    // console.log( value ? true : false)
+    // //=>true
+
+    // value = Symbol()
+    // console.log( value ? true : false)
+    // //=>true
+
+    //value = 2n
+    //console.log( value ? true : false)
+    // //=>true
+
+    // value = 0
+    // console.log( value ? true : false)
+    // //=>false
+
+    // value = "" //empty string
+    // console.log( value ? true : false)
+    // //=>false (0 is the only number converted to false.)
+
+    // value = null
+    // console.log( value ? true : false)
+    // //=>false (null is converted to false)
+
+    // value = undefined
+    // console.log( value ? true : false)
+    // //=>false (undefined is converted to false)
+
+    // value = Number(undefined)
+    // console.log('value', value)
+    // console.log( value ? true : false)
+
+    // value = {}
+    // console.log( value ? true : false)
+
+    // value = []
+    // console.log( value ? true : false)
+
+    // 0	0	"0"	false	
+    // 1	1	"1"	true	
+    // "0"	0	"0"	true	
+    // "000"	0	"000"	true	
+    // "1"	1	"1"	true	
+    // NaN	NaN	"NaN"	false	
+    // Infinity	Infinity	"Infinity"	true	
+    // -Infinity	-Infinity	"-Infinity"	true	
+    // ""	0	""	false	
+    // "20"	20	"20"	true	
+    // "twenty"	NaN	"twenty"	true	
+    // [ ]	0	""	true	
+    // [20]	20	"20"	true	
+    // [10,20]	NaN	"10,20"	true	
+    // ["twenty"]	NaN	"twenty"	true	
+    // ["ten","twenty"]	NaN	"ten,twenty"	true	
+    // function(){}	NaN	"function(){}"	true	
+    // { }	NaN	"[object Object]"	true	
+    // null	0	"null"	false	
+    // undefined	NaN	"undefined"	false
+
+    // if(value) {
+
+    // }
+    //javascript tries to convert value to a boolean and then compare that to true
+    // if((Boolean) === true) {
+
+    // }
+
+    // truthy (true)
+    // falsy (false)
+    // if ('hello') {
+    //   console.log('run');
+    // } else {
+    //   console.log('skipped');
+    // }
+
+    // if ("") {
+    //   console.log('run');
+    // } else {
+    //   console.log('skipped');
+    // }
+    
+    // these are falsey
+    // false
+    // 0
+    // ''
+    // null      //programmers says value is undefined
+    // undefined //javascript says value is undefined
+    // NaN
+
+    // in Ruby these are falsey
+    // https://riptutorial.com/ruby/example/2092/truthy-and-falsy-values
+    // nil
+    // boolean false
+    // these are truthy
+    // 0 - numeric zero (Integer or otherwise)
+    // "" - Empty strings
+    // "\n" - Strings containing only whitespace
+    // [] - Empty arrays
+    // {} - Empty hashes
+
+    // 1) Avoid direct comparisons in conditionals
+
+    // not this
+    // const username = '';
+    // if (username === false) {
+    //   console.log('no user');
+    // }
+    
+    // this
+    // const username = '';
+    // if (!username) {
+    //   console.log('no user');
+    // }
+    
+    // 2) Use triple equals === (strict equals operator) 
+
+    // if (null == undefined) {
+    //   console.log('equals');
+    // } else {
+    //   console.log('not equals');
+    // }
+    
+    // if (null === undefined) {
+    //   console.log('equals');
+    // } else {
+    //   console.log('not equals');
+    // }
+    
+    // 4) Convert to real Boolean values where needed
+    // if (NaN === NaN) {
+    //   console.log('equal')
+    // } else {
+    //   console.log('not equals')
+    // }
+
+    // if (Boolean(NaN) === Boolean(NaN)) {
+    //   console.log('equal')
+    // } else {
+    //   console.log('not equals')
+    // }
+
+    // Challenge 1:
+    // What will the following console logs display? (they're all true and false)
+
+    // console.log("Challenge 1:")       //Challenge 1:
+    // console.log(!undefined);          //true
+    // console.log(Boolean(NaN));        //false
+    // console.log(false === false);     //true
+    // console.log(5 === "5");           //false
+    // console.log("Hello" == "hello");  //false
+
+    // Challenge 2:
+    // What will the following console logs display? (they're all true and false)
+    // console.log("Challenge 2:")
+    // console.log(Boolean(0));          //false
+    // console.log(Boolean("0"));        //true
+    // console.log(Boolean(""));         //false
+    // console.log(!null);               //true
+    // console.log(!!"hello");           //true
+
+    // Challenge 3:
+    // List all the falsy values in JavaScript
+    //false
+    //0
+    //""
+    //null
+    //undefined
+    //NaN
+  </script>
+</body>
+
+</html>

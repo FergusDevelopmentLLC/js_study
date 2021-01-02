@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+  </head>
+  <script>
+    
+    // The problem with callbacks
+    
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position);
+    });
+    console.log('done');
+    
+    
+    // let url = 'https://www.politipoint.org/api/cities/1000'
+    // getCity(url).then((data) => {
+    //     console.log('data', data)
+    // }).catch((error) => {
+    //     console.log('error', error)
+    // })
+
+    //all ways to deal with asyncronous data
+    // let url = 'https://www.politipoint.org/api/cities/1000'
+    // fetch(url).then((res) => {
+    //   if (res.ok) {
+    //     res.json().then((data) => {
+    //       console.log('data', data)
+    //     })
+    //   }
+    //   else {
+    //     console.log('error')
+    //   }
+    // })
+
+    //callback
+    // const getCity = (resource, callback) => {
+    //   const request = new XMLHttpRequest()
+    //   request.addEventListener('readystatechange', () => {
+    //     if(request.readyState === 4 && request.status === 200) {
+    //       callback(undefined, JSON.parse(request.responseText))
+    //     }
+    //     else if(request.readyState === 4) {
+    //       callback('could not fetch', undefined)
+    //     }
+    //   })
+    //   request.open('GET', resource)
+    //   request.send()
+    // }
+
+    // let url = 'https://www.politipoint.org/api/cities/1000'
+    // getCity(url, (err, data) => {
+    //   console.log(err)
+    //   console.log(data)
+    //   url = 'https://www.politipoint.org/api/cities/500'
+    //   getCity(url, (err, data) => {
+    //     console.log(err)
+    //     console.log(data)
+    //     url = 'https://www.politipoint.org/api/cities/200'
+    //     getCity(url, (err, data) => {
+    //       console.log(err)
+    //       console.log(data)
+    //     })
+    //   })
+    // })
+
+    //promise
+    // const getCity = (resource) => {
+    //   return new Promise((resolve, reject) => {
+    //     const request = new XMLHttpRequest()
+    //     request.addEventListener('readystatechange', () => {
+    //       if(request.readyState === 4 && request.status === 200) {
+    //         resolve(JSON.parse(request.responseText))
+    //       }
+    //       else if(request.readyState === 4) {
+    //         reject("could not load data")
+    //       }
+    //     })
+    //     request.open('GET', resource)
+    //     request.send()
+    //   })
+    // }
+
+    // getCity('https://www.politipoint.org/api/cities/1000')
+    //   .then((data) => {
+    //     console.log(data)
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    
+    //fetch is promised based
+    // const getCity = (resource) => {
+    //   return fetch(resource)
+    // }
+
+    // getCity('https://www.politipoint.org/api/cities/1000')
+    //   .then((response) => {
+    //     if(response.ok) {
+    //       response.json().then((data) => {
+    //         console.log(data)
+    //       })
+    //     }
+    //     else {
+    //       console.log('error2')
+    //     }
+    //   }).catch((error) => console.log(error))
+
+
+    // const getCity = async (resource) => {
+    //   return await fetch(resource)
+    //                 .then((response) => {
+    //                   if(response.ok) {
+    //                     response.json()
+    //                   }
+    //                   else {
+    //                     throw 'bad url'
+    //                   }
+    //                 })
+    //                 .catch((error) => error)
+    // }
+
+    // const doIt = async () => {
+    //   try {
+    //     let city = await getCity('https://www.politipoint.org/api/cities/500')
+    //     console.log('city', city)
+    //   }
+    //   catch(error) {
+    //     console.log('error', error)
+    //   }
+    // }
+
+    // doIt()
+  </script>
+  <body>
+    
+  </body>
+</html>
+
+
+    

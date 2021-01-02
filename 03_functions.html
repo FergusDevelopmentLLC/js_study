@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <script>
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // Functions
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // Closures
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    //What is a closure and why does it matter?
+    // let likeCount = 0;
+    // function handleLikePost() {
+    //     likeCount += 1;  
+    // }
+    // handleLikePost();
+    // console.log('like count:', likeCount);
+
+    // function handleLikePost() {
+    //     let likeCount = 0;
+    //     return function addLike() {
+    //         likeCount += 1;    
+    //         return likeCount;
+    //     }
+    // }
+    // let like = handleLikePost()
+    // console.log(like())
+    // console.log(like())
+    // console.log(like())
+
+    // 1) Closures are a property of JavaScript functions
+    // 2) Call function in different scope than where function was original defined
+    // why are closures important?
+    // they allow us to remember values
+
+
+    // Challenge: Write a countdown function with a hard-coded starting number inside closure
+    // Stretch goal: Write a countdown function that can count from a provided number,
+    // with a provided step
+
+    // function countdown() {
+    //   let number = 10
+    //   return function countingDown() {
+    //     number--
+    //     return number
+    //   }
+    // }
+
+    // const countingDown = countdown();
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+
+    // const countdown = (startNumber, step) => {
+    //   let number = startNumber
+    //   return () => {
+    //     number = number - step
+    //     return number
+    //   }
+    // }
+
+    // const countingDown = countdown(10, 2);
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+
+    // JavaScript variables can belong to the local or global scope.
+    // Global variables can be made local (private) with closures.
+
+    // In javascript functions are not just functions. They are also closures.
+    // This means that inside a function scope, you also have access to variables outside the function
+    //
+    // Counter dilemma
+
+    // Initiate counter
+    // var counter = 0;
+
+    // // Function to increment counter
+    // function add() {
+    //     counter += 1;
+    // }
+
+    // // Call add() 3 times
+    // add();
+    // add();
+    // add();
+    // The counter should now be 3
+
+    // const counter = (() => {
+    //     var privateCounter = 0
+    //     const changeBy = (val) => privateCounter += val
+    //     return {
+    //         increment: () => changeBy(1),
+    //         decrement: () => changeBy(-1),
+    //         value: () => privateCounter
+    //     }
+    // })()
+
+    // console.log(counter);
+    // console.log(counter.value());  // 0.
+    // counter.increment();
+    // counter.increment();
+    // console.log(counter.value());  // 2.
+    // counter.decrement();
+    // console.log(counter.value());  // 1.
+
+    // const getCity = (resource) => {
+    //     return new Promise((resolve, reject) => {
+    //         const request = new XMLHttpRequest()
+
+    //         request.addEventListener('readystatechange', () => {
+    //             if(request.readyState === 4 && request.status === 200) {
+    //                 resolve(JSON.parse(request.responseText))
+    //             }
+    //             else if(request.readyState === 4) {
+    //                 reject('error getting resource')
+    //             }
+    //         })
+
+    //         request.open('GET', resource)
+    //         request.send()
+    //     })
+    // }
+
+
+    // Better Functions with Default Parameters
+
+    // function convertTemperature(celsius, decimalPlaces) {
+    //   decimalPlaces = decimalPlaces || 1
+    //   console.log('decimalPlaces', decimalPlaces)
+    //   const fahrenheit = celsius * 1.8 + 32;
+    //   return Number(fahrenheit.toFixed(decimalPlaces));
+    // }
+    // console.log(convertTemperature(21, 0)); //69.8, why not 70? 0 is a falsey value
+
+    // function convertTemperature(celsius, decimalPlaces = 1) {
+    //   const fahrenheit = celsius * 1.8 + 32;
+    //   return Number(fahrenheit.toFixed(decimalPlaces));
+    // }
+    // console.log(convertTemperature(21, 1));
+
+
+    // Shorter Functions with Arrow Functions
+    // Why?
+
+    //1. provide a more concise way to write a function
+    //2. make working with classes easier, handling the this keyword
+
+    // const username = 'john';
+    // function capitalizeName(name) {
+    //   return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;  
+    // }
+
+    // const capitalizeName = (name) => {
+    //   return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+    // }
+
+    //console.log(capitalizeName(username))
+
+    //
+
+    // const username = 'john';
+
+    // const capitalize = name => `${name.charAt(0).toUpperCase()}${name.slice(1)}`;  
+
+    // function greetUser(name, callback) {
+    //   return callback(capitalize(name));  
+    // }
+
+    // console.log(greetUser(username, capitalizedName => `Hello ${capitalizedName}.`))
+
+
+    // Challenge: Rewrite your first function from a previous challnge to be an arrow function. 
+    // Stretch goal: Rewrite counting down closure in arrow function form. 
+
+
+    // Challenge start 
+    // function splitBill(amount, numPeople) {
+    //   return `Each person needs to pay ${amount / numPeople}`
+    // }
+
+    // const splitBill = (amount, numPeople) => `Each person needs to pay ${amount / numPeople}`
+
+    // console.log(splitBill(10, 2));
+    // console.log(splitBill(10, 4));
+    // console.log(splitBill(10, 5));
+
+
+    // Stretch goal start
+    // function countdown(startingNumber, step) {
+    //   let countFromNum = startingNumber + step;
+    //   return function decrease() {
+    //     countFromNum -= step;
+    //     return countFromNum;
+    //   }
+    // }
+
+    // const countdown = (startingNumber, step) => {
+    //   let countFromNum = startingNumber + step;
+    //   return () => countFromNum -= step
+    // }
+
+    // const countdown = (startingNumber, step) => {
+    //   let countFromNum = startingNumber + step;
+    //   return () => countFromNum -= step
+    // }
+
+    // const countingDown = countdown(20, 2);
+    // console.log(countingDown());
+    // console.log(countingDown());
+    // console.log(countingDown());
+
+    //Partial Application for Single-Responsibility Functions
+    // function getData(baseUrl) {
+    //   return function(route) { 
+    //     return function(callback) {    
+    //       fetch(`${baseUrl}${route}`)
+    //         .then(response => response.json())
+    //         .then(data => callback(data));  
+    //     }     
+    //   }  
+    // }
+
+    // const getData = baseUrl => route => callback => fetch(`${baseUrl}${route}`).then(response => response.json()).then(data => callback(data))
+    // const getSocialMediaData = getData('https://jsonplaceholder.typicode.com');
+    // const getSocialMediaPosts = getSocialMediaData('/posts');
+    // const getSocialMediaComments = getSocialMediaData('/comments');
+
+    // getSocialMediaPosts(posts => {
+    //   posts.forEach(post => console.log(post.title))
+    // })
+
+
+    // var Test = (function () {
+
+    //   function func1() {
+    //     console.log('func1')
+    //   }
+
+    //   function func2() {
+    //     console.log('func2')
+    //   }
+
+    //   function func3() {
+    //     console.log('func3')
+    //   }
+
+    //   return {
+    //       func1: func1,
+    //       func2: func2,
+    //       func3: func3
+    //   };
+
+    // })();
+
+    // console.log(typeof Test)
+    // console.log(Test.func1())
+    // console.log(Test.func2())
+    // console.log(Test.func3())
+
+
+    // var Test = () => {
+
+    //   function func1() {
+    //     console.log('func1')
+    //   }
+
+    //   function func2() {
+    //     console.log('func2')
+    //   }
+
+    //   function func3() {
+    //     console.log('func3')
+    //   }
+
+    //   return {
+    //       func1: func1,
+    //       func2: func2,
+    //       func3: func3
+    //   };
+
+    // }
+
+    // console.log(typeof Test)
+    // Test().func1()
+    // Test().func2()
+    // Test().func3()
+
+    // const video = {
+    //   title: 'a',
+    //   play() {
+    //     console.log(this)
+    //   }
+    // }
+
+    // video.stop = function () {
+    //   console.log(this)
+    // }
+
+    // video.play()
+    // video.stop()
+
+    //spread vs rest
+    // add elements from an existing array to a new array
+    // let arr1 = [1, 3, 5, 7]
+    // let arr2 = [2, 4, 6, 8]
+    // let [...combined] = [...arr1, 7, 7, 7, ...arr2]
+    // console.log(combined)
+
+    //pass elements of array into a function
+    // function addThem (a, b) {
+    //   return a + b
+    // }
+    // let arr1 = [1, 2, 3, 4]
+    // console.log(addThem(...arr1))
+    //copy arrays
+
+    //concatenate array
+  </script>
+</body>
+
+</html>

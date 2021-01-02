@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <script>
+    
+    //A Symbol value represents a unique identifier.
+
+    //A symbol value may be used as an identifier for object properties; this is the data type's primary purpose.
+
+    let x = true
+    let y = true
+    console.log('x === y', x === y)
+    //=> true
+
+    x = Symbol()
+    y = Symbol()
+    console.log('x === y', x === y)
+    //=> false
+    
+    // Optionally, pass the the "id" is like a label which has has no impact on the unique value of the symbol. The
+    // unique identifier is used only for debugging purposes. The underlying unique value associated with the Symbol 
+    // cannnot be displayed.
+    let sku = Symbol("sku")
+    
+    // Possible use case:
+    // Let's say we get a user object from API call that we want to assign a unique identifier to, but do not want to overwrite
+    // the original object's id property.
+
+    let userFromApi = {
+                        id: 143,
+                        firstName: "Simon",
+                        lastName: "Le Bon"
+                      }
+    
+    // We can create a symbol called, idSym. Assign an 'id' label to it:
+    const idSym = Symbol('id')
+
+    // Then we can create a new key in the userFromApi object, with the key being our new symbol.
+
+    userFromApi[idSym] = 32415343534 // our id for user
+
+    console.log('userFromApi', userFromApi)
+    // {
+    //   "id": 143, 
+    //   "firstName": "Simon", 
+    //   "lastName": "Le Bon", 
+    //   Symbol(id): 32415343534
+    // }
+
+    console.log('userFromApi[idSym]', userFromApi[idSym])
+    //userFromApi[idSym] 32415343534
+    
+    //https://www.youtube.com/watch?v=4J5hnOCj69w
+    //https://javascript.info/symbol
+    //https://developer.mozilla.org/en-US/docs/Glossary/symbol
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+    </script>
+  </body>
+</html>
+

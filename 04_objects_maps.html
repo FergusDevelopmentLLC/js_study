@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <script>
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // Objects and Maps
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // variables - boxes; objects - file cabinets
+
+    // Use Objects for Managing Key-Value Pairs
+    // the curley syntax for objects is called object literal syntax
+    // {
+    //   key: 'value'  
+    // }
+
+    //object values can be any primitive
+
+    //an object can be value
+    // let obj = {
+    //   key: {
+    //     key: 42
+    //   }
+    // }
+    // console.log(obj.key)
+    // console.log(obj.key.key)
+
+    // let talker = {
+    //   sayHello: () => {
+    //     console.log('hello')
+    //   }
+    // }
+    // let hello = talker.sayHello
+    // hello()
+
+    // let talker = {
+    //   sayHello() {
+    //     console.log('hellox')
+    //   }
+    // }
+    // let hello = talker.sayHello
+    // hello()
+
+    // const bar = "O'Malleys"
+    // const cafe = "Starbucks"
+    // const restaurant = "Burger King"
+
+    // let favouritePlaces = { bar, cafe, restaurant,
+    //   greeting() {
+    //     console.log('hello!')
+    //   }
+    // }
+    // console.log('favouritePlaces', favouritePlaces)
+    // favouritePlaces.greeting();
+
+    // const colors = {
+    //   blue: "#f00",
+    //   orange: "#f60"
+    // };
+    // function getColor(key) {
+    //   return colors.key;
+    // }
+    // console.log(getColor('blue'));
+
+    // Destructuring
+
+    // const user = {
+    //   name: "Reed",
+    //   username: "Reedbarger",
+    //   email: "reed@gmail.com",
+    //   details: {
+    //     title: "Programmer"  
+    //   }  
+    // };
+
+    // function displayUser() {
+    //   const { username, email, details: { title } } = user
+    //   console.log(`username: ${username}, email: ${email}, title: ${title}`);  
+    // }
+    // displayUser()
+
+    // const displayUser = (user) => {
+    //   const { username, email, details: { title } } = user
+    //   console.log(`username: ${username}, email: ${email}, title: ${title}`);
+    // }
+    // displayUser(user)
+
+    // const displayUser = ( { username, email, details: { title } } ) => console.log(`username: ${username}, email: ${email}, title: ${title}`)
+    // displayUser(user)
+
+
+
+    // Challenge: The recommendations object contains a set of of nice places to visit in Brighton, UK,
+    // organized by what you'd like to do (eat pancakes, drink coffee etc).
+
+    // 1. Destructure the places to drink (coffee and beer) from recommendations
+    // 2. Destructure the places to listen to music
+    // 3. Write a function that takes the recommendations object as an argument and that
+    //      a) Logs out the music venues in recommendations when invoked 
+    //      b) Uses object descructuring to get the "traditional" and "jazz" keys from the argument
+
+    // const recommendations = {
+    //     pancakes: 'Nowhere Man',
+    //     riceBowls: 'Pompoko',
+    //     beer: 'The Craft Beer Co.',
+    //     coffee: 'Coffee Roasters',
+    //     small_plates: 'Venetian Plates',
+    //     music: { 
+    //         traditional: 'Fiddler\'s Elbow', 
+    //         jazz: 'The Paris House'
+    //     }
+    // }
+
+    // const { beer, coffee } = recommendations
+    // console.log('beer', beer)
+    // console.log('coffee', coffee)
+
+    // const { music: { traditional, jazz } } = recommendations
+    // console.log('traditional', traditional)
+    // console.log('jazz', jazz)
+
+    // const showMusic = ( { music: { traditional, jazz } } ) => {
+    //   console.log('traditional', traditional)
+    //   console.log('jazz', jazz)
+    // }
+    // showMusic(recommendations)
+
+    // Merge objects with object spread
+    // const user = {
+    //   name: "",
+    //   username: "",
+    //   phoneNumber: "",
+    //   email: "",
+    //   password: "",
+    //   verified: true
+    // };
+
+    // const newUser = {
+    //   username: "ReedBarger",
+    //   email: "reed@gmail.com",
+    //   password: "mypassword"  
+    // };
+
+    // const thirdUser = Object.assign(user, newUser)
+    // console.log('user', user)
+    // console.log('newUser', newUser)
+    // console.log('thirdUser', thirdUser)
+    // //user got updated too!
+
+    // const thirdUser = Object.assign({}, user, newUser)
+    // console.log('user', user)
+    // console.log('newUser', newUser)
+    // console.log('thirdUser', thirdUser)
+
+    // const thirdUser = { ...user, ...newUser, verified: false  } //verified is overwritten by last spread
+    // console.log('user', user)
+    // console.log('newUser', newUser)
+    // console.log('thirdUser', thirdUser)
+    
+    // let a = {
+    //           addressInfo: {
+    //             street: null,
+    //             number: null,
+    //             city: null,
+    //             country: null
+    //           }
+    // }
+
+    // let combined = {...a, ...{
+    //   addressInfo: {
+    //     ...a.addressInfo,
+    //     city: "New York City"
+    //   }
+    // }}
+    // console.log ('combined', combined)
+
+    /////////////////////////////////////////
+    //JavaScript Maps
+    /////////////////////////////////////////
+    //How Maps Can Do What Objects Can't
+
+    // const nums = {
+    //   1: 1,
+    //   true: true
+    // };
+    // console.log(Object.keys(nums))
+    // object keys are IMPLICITLY STRINGS
+    // ["1", "true"]
+
+    //with a Map, keys can be any type
+    // const map1 = new Map([
+    //   [1, 1],
+    //   [true, true]  
+    // ]);
+    // map1.set('key', 'value');
+    // console.log(map1.keys())//MapIterator
+    // console.log([...map1.keys()])
+
+    // Maps MAINTAIN ORDER
+    // map1.forEach((key, value) => {
+    //   console.log('key', key)
+    //   console.log('value', value)
+    // })
+
+    //use an object as the key
+    // const user1 = { name: "john" }
+    // const user2 = { name: "mary" }
+    // const secretKey1 = "asldjfalskdjf";
+    // const secretKey2 = "alksdjfakjsdf";
+    // const secretKeyMap = new Map([
+    //   [user1, secretKey1],
+    //   [user2, secretKey2],
+    // ])
+    // const key = secretKeyMap.get(user1);
+    // console.log(key);
+
+    // const user1 = { name: "john" }
+    // const user2 = { name: "mary" }
+    // const secretKey1 = "asldjfalskdjf";
+    // const secretKey2 = "alksdjfakjsdf";
+    // const secretKeyMap = new WeakMap([
+    //   [user1, secretKey1],
+    //   [user2, secretKey2],
+    // ])
+    // const key = secretKeyMap.get(user1);
+    // console.log(key);
+    //user WeakMap when keys are objects
+
+    // const user = {
+    //   name: "john",
+    //   verified: true  
+    // };
+
+    // const user = new Map ([
+    //   ['name', 'john'],
+    //   ['verified', true]
+    // ])
+    // console.log(user)
+    // console.log(user.size)
+
+    // Challenge: 
+    // 1. Take the object (contains a favourite place in Brighton, UK), and turn it into a Map
+    // 2. Add a boolean property 'visited', to indicate places that you've been to it
+    // 3. Add an integer property 'averageBill' with how much you spend there on average
+    // 4. Fetch one of the properties using the get() method
+
+    // const favouritePlace = {
+    //     music: "jazz",
+    //     name: "Paris House"
+    // };
+
+    // const favouritePlace = new Map([
+    //   ['music', 'jazz'],
+    //   ['name', 'Paris House'],
+    //   ['visited', false]
+    // ])
+    // favouritePlace.set('averageBill', 99)
+    // console.log('favouritePlace', favouritePlace)
+    //console.log(favouritePlace.get('averageBill'))
+
+    //Primary use of the this keyword. It was provided to the language so that methods on objects can use the properties on objects
+    // const userData = { 
+    //   username: "Reed",
+    //   title: "JavaScript Programmer",
+    //   getBio() {
+    //     console.log(`User ${this.username} is a ${this.title}`);
+    //   }  
+    // }
+    // userData.getBio();
+
+    // const userData = { 
+    //   username: "Reed",
+    //   title: "JavaScript Programmer",
+    //   getBio() {
+    //     console.log(`User ${this.username} is a ${this.title}`);
+    //   },
+    //   askToFriend() {
+    //     console.log('this', this)
+    //     let that = this;
+    //     setTimeout(function() {
+    //       console.log(`Would you like to friend ${that.username}?`);   
+    //     }, 2000);  
+    //   } 
+    // }
+    // userData.askToFriend();
+
+    // const userData = { 
+    //   username: "Reed",
+    //   title: "JavaScript Programmer",
+    //   getBio() {
+    //     console.log(`User ${this.username} is a ${this.title}`);
+    //   },
+    //   askToFriend() {
+    //     console.log(this)
+    //     setTimeout(() => {
+    //       console.log(this)
+    //       console.log(`Would you like to friend ${this.username}?`);   
+    //     }, 2000);  
+    //   } 
+    // }
+    // userData.askToFriend();
+
+    // const userData = { 
+    //   username: "Reed",
+    //   title: "JavaScript Programmer",
+    //   getBio: () => {
+    //     console.log(this) //referencing Window object
+    //     console.log(`User ${this.username} is a ${this.title}`);
+    //   },
+    //   askToFriend() {
+    //     console.log(this)
+    //     setTimeout(() => {
+    //       console.log(this)
+    //       console.log(`Would you like to friend ${this.username}?`);   
+    //     }, 2000);  
+    //   } 
+    // }
+    // userData.getBio();
+    // //userData.askToFriend();
+
+  </script>
+</body>
+
+</html>

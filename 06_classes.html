@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+</head>
+
+<body>
+  <script>
+    ///////////////////////////////////////////////////////
+    // Constructor functions
+    // prototypical inheritance
+    ///////////////////////////////////////////////////////
+
+    // const student1 = {
+    //   id: 1,
+    //   name: "Reed",
+    //   subjects: [],
+    //   addSubject(subject) {
+    //     this.subjects = [...this.subjects, subject];
+    //   }
+    // }
+    // student1.addSubject('Math');
+    // console.log(student1.subjects);
+
+    // constructor function
+    // enables objects on demand
+    // has to be created with function keyword
+    // by convention the function is capitalized
+
+    // function Student(id, name, subjects = []) {
+    //   this.id = id
+    //   this.name = name
+    //   this.subjects = subjects
+    // }
+
+    // Student.prototype.addSubject = function (subject) {
+    //   console.log('this', this) //this is refering to the Student object
+    //   this.subjects = [...this.subjects, subject]
+    // }
+
+    // Student.prototype.removeSubject = function (subject) {
+    //   this.subjects = this.subjects.filter(sub => sub !== subject ? sub : null)
+    // }
+    //we have to use the function notation here because we need to have access to this
+
+    //the following version doesn't work
+    // Student.prototype.addSubject = (subject) => {
+    //   console.log(this) //this is refering to the Window object
+    //   this.subjects = [...this.subjects, subject]
+    // }
+
+    // let s1 = new Student("1", "Will")
+    // s1.addSubject("Gym")
+
+    //here Student is treated just like a normal function
+    //console.log(Student("1", "Will")) //undefined because the method doesn't return anything
+
+    //but if we use the new keyword, we get a student object
+    //let s1 = new Student("1", "Will")
+    //console.log('s1', s1)
+    //by using new keyword, it is implied that the last line of the constructor function is:
+    // function Student(id, name, subjects = []) {
+    //   this.id = id
+    //   this.name = name
+    //   this.subjects = subjects
+    //   return this;//implied by using new to call function
+    // }    
+
+    // let s1 = new Student("1", "Will")
+    // s1.addSubject("Gym")
+    // console.log('s1', s1)
+    // s1.removeSubject("Gym")
+    // console.log('s1', s1)
+
+    // 1. create a new constructor function, Book, which logs books in the school library (id, title, author, themes[]), 
+    // 2. Add ids, titles and authors for your two favourite books. 
+    // 3. Use the prototype keyword to add a theme property to the  books. 
+    // 4. Add at least one theme to each of your books. 
+
+    // Beginning:
+    // function Book(id, title, author, themes = []) {
+    //   // your code here
+    //   this.id = id
+    //   this.title = title
+    //   this.author = author
+    //   this.themes = []
+    // }
+
+    // Book.prototype.addTheme = function(theme) {
+    //   this.themes = [...this.themes, theme]
+    // }
+
+    // let bible = new Book(1, "Bible", "God")
+    // bible.addTheme("religion")
+    // console.log('bible', bible)
+
+    // Understand the Prototype chain
+    // prototypical inheritance - each instantiated object (from constructor function) inherits from it's constructor's prototype
+    // every object has the prototype
+    // let obj = {
+    //   name: "Will",
+    //   location: "Denver, CO"
+    // }
+    // console.log('Object.getPrototypeOf(obj)', Object.getPrototypeOf(obj))
+    // console.log('Object.getPrototypeOf(obj).constructor', Object.getPrototypeOf(obj).constructor)
+
+    // //this is telling us that the basic object that was created is a (capital O) Object
+    // console.log(new Object()) //{}
+
+    // console.log(new Object());
+    // function Student(id, name, subjects = []) {
+    //   this.id = id;
+    //   this.name = name;
+    //   this.subjects = subjects;
+    // }
+    // const student1 = new Student(1, 'Reed');
+    //console.log(Object.getPrototypeOf(student1).constructor);
+
+    // console.log(Object.getPrototypeOf(student1) === Student.prototype);
+    // console.log(student1.__proto__ === Student.prototype);
+    // console.log(student1.__proto__.constructor);//Student
+    // console.log(student1.__proto__.__proto__.constructor);//Object
+    // console.log(student1.__proto__.__proto__.__proto__);//null
+
+    // console.log("xyz".__proto__.constructor) //String
+    // console.log("xyz".__proto__.__proto__.constructor) //Object
+
+    //add a method on String
+    // String.prototype.sayWill = function() {
+    //   console.log('will')
+    // }
+    // "xyz".sayWill() //will
+
+    // Object.prototype.sayCapitalizedWill = function() {
+    //   console.log('Will')
+    // }
+
+    // "xyz".sayCapitalizedWill() //Will
+
+    // let obj = {}
+    // obj.sayCapitalizedWill() //Will
+
+    ////////////////////////////////////////////
+    // Classes
+    ////////////////////////////////////////////
+
+    //classes === constructor functions
+
+    // class Student {
+    //   constructor(id, name, subjects = []) {
+    //     this.id = id
+    //     this.name = name
+    //     this.subjects = subjects
+    //   }
+
+    //   getStudentName() {
+    //     return this.name
+    //   }
+
+    //   addSubject(subject) {
+    //     this.subjects = [...this.subjects, subject]
+    //   }
+
+    // }
+    // let s3 = new Student(3, "Jeff");
+    // console.log('s3', s3);
+    // console.log(typeof s3);
+
+    // console.log('s3.getStudentName()', s3.getStudentName())
+
+    // 1. A school's film club wants to store details of the films it has studied so far this year. Create a new class to do this. We want to store 
+    //    the following data about each film: id, title, director, releaseYear and genres[].
+    // 2. Create two methods on the class: one for adding multiple genres to the films - addGenre(genre) - and one to get the title of the film - getFilmTitle().
+    // 3. Instantiate a new instance of the class using data from your your favourite film. Add at least 1 genre to your film using addGenre(), and 
+    //    get the title using getFilmTitle()
+
+    // class Film {
+    //   constructor(id, title, director, releaseYear, genres = []) {
+    //     this.id = id
+    //     this.title = title
+    //     this.director = director
+    //     this.releaseYear = releaseYear
+    //     this.genres = genres
+    //   }
+
+    //   getFilmTitle() {
+    //     return this.title
+    //   }
+
+    //   addGenre(genre) {
+    //     this.genres = [...this.genres, genre]
+    //   }
+    // }
+
+    // const starWars = new Film(1, "Star Wars", "George Lucas", 1978)
+    // starWars.addGenre("scifi")
+    // console.log('starWars', starWars)
+
+    ////////////////////////////////////////////
+    // Share Class features with Extends
+    ////////////////////////////////////////////
+
+    // class Product {
+    //   constructor() {
+    //   }  
+    // }
+
+    // class Product {
+    //   constructor(name, price, discountable) {
+    //     this.name = name
+    //     this.price = price
+    //     this.discountable = discountable
+    //   }
+
+    //   isDiscountable() {
+    //     return this.discountable;  
+    //   }
+    // }
+
+    // class SaleProduct extends Product{
+    //   constructor(name, price, discountable, percentOff) {
+    //     super(name, price, discountable)
+    //     this.percentOff = percentOff
+    //   }
+
+    //   getSalePrice() {
+    //     if(super.isDiscountable()) {
+    //       return this.price - (this.price * (this.percentOff / 100))
+    //     }
+    //     else {
+    //       return this.price
+    //     }
+    //   }  
+    // }
+
+    // const product1 = new SaleProduct("Coffee Maker", 100, true, 25);
+    // console.log('product1', product1)
+
+    // console.log('product1.discountable', product1.discountable)
+    // console.log('product1.getSalePrice()', product1.getSalePrice())
+
+    ////////////////////////////////////////////
+    // How To Get, Set and Simplify Classes
+    ////////////////////////////////////////////
+
+    // class Product {
+    //   constructor(name, price, discountable) {
+    //     this.name = name;
+    //     this.price = price;
+    //     this.discountable = discountable;
+    //   }
+
+    //   getClearancePrice() {
+    //     return this.price * 0.5;
+    //   }
+    // }
+
+    // const product1 = new Product("Coffee Maker", 99.95, false);
+    // console.log(product1.getClearancePrice())
+
+    // class Product {
+    //   constructor(name, price, discountable) {
+    //     this._name = name;
+    //     this._price = price;
+    //     this.discountable = discountable;
+    //   }
+
+    //   get price() {
+    //     return this._price;
+    //   }
+
+    //   set price(price) {
+    //     if (typeof price !== "number") {
+    //       return this._price;
+    //     } else {
+    //       this._price = price; 
+    //     }
+    //   }
+
+    //   get name() {
+    //     return this._name;
+    //   }
+
+    //   set name(name) {
+    //     if (typeof name !== "string") {
+    //       return this._name;
+    //     } else {
+    //       this._name = name; 
+    //     }
+    //   }
+
+    // }
+
+    // const product1 = new Product("Coffee Maker", 99.95, false);
+    // //product1._price = 150 //do not do this
+    // product1.price = 150
+
+    // //product1._name = "Ultra coffee maker" //do not do this
+    // product1.name = "Ultra coffee maker"
+
+    // console.log(product1.price)
+    // console.log(product1.name)
+
+
+    // const isAuth = true;
+    // const user = {
+    //   favorites: []
+    // };
+
+    // class Product {
+    //   constructor(name, price) {
+    //     this.name = name;
+    //     this.price = price;
+    //   }
+
+    //   handleFavoriteProduct() {
+    //     if (isAuth) {
+    //       this.favoriteProduct();
+    //     } else {
+    //       console.log("You must be signed in to favorite products!");
+    //     }
+    //   }
+
+    //   favoriteProduct() {
+    //     user.favorites.push(this.name);
+    //     console.log(`${this.name} favorited!`);
+    //   }
+    // }
+
+    // const product1 = new Product('Coaster', 89.99)
+    // product1.handleFavoriteProduct()
+    // console.log('user', user)
+
+
+    // const isAuth = true;
+    // const user = {
+    //   favorites: []
+    // };
+
+    // class Product {
+    //   constructor(name, price) {
+    //     this.name = name;
+    //     this.price = price;
+    //   }
+
+    //   handleFavoriteProduct() {
+    //     if (isAuth) {
+
+    //       // setTimeout(function() {
+    //       //   console.log('this', this)//this is Window!
+    //       //   this.favoriteProduct()
+    //       // }, 1000)
+
+    //       // setTimeout(function() {
+    //       //   console.log('this', this)//this is the Product object, because of bind
+    //       //   this.favoriteProduct()
+    //       // }.bind(this), 1000)
+
+    //       // setTimeout(() => {
+    //       //   console.log('this', this)//this is the Product object, because of arrow function
+    //       //   this.favoriteProduct()
+    //       // }, 1000)
+
+    //     } else {
+    //       console.log("You must be signed in to favorite products!");
+    //     }
+    //   }
+
+    //   favoriteProduct() {
+    //     user.favorites.push(this.name);
+    //     console.log(`${this.name} favorited!`);
+    //   }
+    // }
+
+    // const product1 = new Product('Coaster', 89.99)
+    // product1.handleFavoriteProduct()
+    // console.log('user', user)
+
+
+    // const isAuth = true;
+    // const user = {
+    //   favorites: []
+    // };
+
+    // class Product {
+
+    //   constructor(name, price) {
+    //     this.name = name;
+    //     this.price = price;
+    //     //this.favoriteProduct = this.favoriteProduct.bind(this)
+    //   }
+
+    //   handleFavoriteProduct() {
+    //     if (isAuth) {
+    //       console.log('this', this)
+    //       setTimeout(this.favoriteProduct, 1000)
+
+    //     } else {
+    //       console.log("You must be signed in to favorite products!");
+    //     }
+    //   }
+
+    //   favoriteProduct() {
+    //     user.favorites.push(this.name);
+    //     console.log(`${this.name} favorited!`);
+    //   }
+    // }
+    // const product1 = new Product('Coaster', 89.99)
+    // product1.handleFavoriteProduct()
+    // console.log('user', user)
+
+
+    // const isAuth = true;
+    // const user = {
+    //   favorites: []
+    // };
+
+    // class Product {
+
+    //   constructor(name, price) {
+    //     this.name = name;
+    //     this.price = price;
+    //   }
+
+    //   handleFavoriteProduct() {
+    //     if (isAuth) {
+    //       console.log('this', this)
+    //       setTimeout(this.favoriteProduct, 1000)
+
+    //     } else {
+    //       console.log("You must be signed in to favorite products!");
+    //     }
+    //   }
+
+    //   favoriteProduct() {
+    //     console.log('this', this)
+
+    //     user.favorites.push(this.name);
+    //     console.log(`${this.name} favorited!`);
+    //   }
+    // }
+
+    // const product1 = new Product('Coaster', 89.99)
+    // product1.handleFavoriteProduct()
+    // console.log('user', user)
+
+  </script>
+</body>
+
+</html>
